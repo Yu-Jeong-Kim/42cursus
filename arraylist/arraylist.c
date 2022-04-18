@@ -26,7 +26,7 @@ void	deleteArrayList(ArrayList* pList)
 		free(pList);
 	}
 	else
-		printf("Pointer caugth NULL\n");
+		printf("Pointer caught NULL\n");
 }
 
 int	isArrayListFull(ArrayList* pList)
@@ -50,7 +50,7 @@ int addALElement(ArrayList* pList, int position, ArrayListNode element)
 		return (FALSE);
 	}
 	for (int i = pList->currentElementCount; position < i; i--)
-		pList->pElement[i + 1] = pList->pElement[i];
+		pList->pElement[i] = pList->pElement[i - 1];
 
 	pList->pElement[position] = element;
 	pList->currentElementCount++;
@@ -102,7 +102,5 @@ void clearArrayList(ArrayList* pList)
 
 int getArrayListLength(ArrayList* pList)
 {
-	if (!pList)
-		return (FALSE);
 	return (pList->currentElementCount);
 }
