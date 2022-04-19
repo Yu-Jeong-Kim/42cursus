@@ -5,15 +5,16 @@ int	main(void)
 	ArrayList	*pList;
 	int			max;
 
-	max = 5000;
-	pList = createArrayList(max);
+	max = 5;
+	pList = createArrayList(max * 2);
 	for (int i = 0; i < max; i++)
 	{
 		ArrayListNode	pNode;
-		pNode.data = i * 2;
+		pNode.data = i * 12;
 		addALElement(pList, i, pNode);
 	}
-	printf("%d\n", getArrayListLength(pList));
+	//printf("%d\n", getArrayListLength(pList));
+	//removeALElement(pList, 1);
 	//displayArrayList(pList);
 	//timeCheck(pList, max);
 	return (0);
