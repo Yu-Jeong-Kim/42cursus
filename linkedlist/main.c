@@ -19,12 +19,12 @@ int main(void)
 	ptr.pLink = NULL;
 	addLLElement(pList, 1, ptr);
 	displayLinkedList(pList);
-	//printf("%d\n", getLinkedListLength(pList));
-	//removeLLElement(pList, 0);
-	//printf("%d\n", pList->currentElementCount);
 	// printf("%d\n", getLinkedListLength(pList));
-	getLLElement(pList, 4);
-	//deleteLinkedList(pList);
+	// removeLLElement(pList, 0);
+	// printf("%d\n", pList->currentElementCount);
+	// printf("%d\n", getLinkedListLength(pList));
+	// getLLElement(pList, 4);
+	// deleteLinkedList(pList);
 	//timeCheck(pList, max);
 	return (0);
 }

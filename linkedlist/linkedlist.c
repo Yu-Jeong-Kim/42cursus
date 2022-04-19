@@ -87,7 +87,6 @@ void displayLinkedList(LinkedList *pList)
 {
 	ListNode	*pNode;
 
-	pNode = (ListNode *)malloc(sizeof(ListNode));
 	pNode = pList->headerNode.pLink;
 	for (int i = 0; i < pList->currentElementCount; i++)
 	{
