@@ -9,26 +9,22 @@ int main(void)
 	max = 3;
 	for(int i = 0; i < max; i++)
 	{	
-		ListNode 	*pNode = (ListNode *)malloc(sizeof(ListNode));
-		pNode->data = i ;
-		pNode->pLink = NULL;
+		ListNode 	pNode;
+		pNode.data = i * 4 ;
+		pNode.pLink = NULL;
 		addLLElement(pList, i, pNode);
-		printf("Add Element %d\n", pNode->data);
 	}
-
-	ListNode *ptr = (ListNode *)malloc(sizeof(ListNode));
-	ptr->data = 50000;
-	ptr->pLink = NULL;
-	addLLElement(pList, 3, ptr);
-	ListNode *next = pList->headerNode.pLink;
-	printf("finished\n");
-	// printf("%d\n", getLinkedListLength(pList));
-	
+	ListNode ptr;
+	ptr.data = 50000;
+	ptr.pLink = NULL;
+	addLLElement(pList, 1, ptr);
+	displayLinkedList(pList);
+	//printf("%d\n", getLinkedListLength(pList));
 	//removeLLElement(pList, 0);
 	//printf("%d\n", pList->currentElementCount);
 	// printf("%d\n", getLinkedListLength(pList));
-	// printf("%d\n", getLLElement(pList, 0)->data);
-	deleteLinkedList(pList);
+	getLLElement(pList, 4);
+	//deleteLinkedList(pList);
 	//timeCheck(pList, max);
 	return (0);
 }

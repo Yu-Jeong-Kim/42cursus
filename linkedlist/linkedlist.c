@@ -8,20 +8,24 @@ LinkedList* createLinkedList()
 	return(pList);
 }
 
-int addLLElement(LinkedList* pList, int position, ListNode *element)
+int addLLElement(LinkedList* pList, int position, ListNode element)
 {
 	ListNode	*curr;
+	ListNode	*addNode;
+	int			i;
 
 	if (position < 0 || pList->currentElementCount < position)
 	{
 		printf("Wrong Approach\n");
 		return (FALSE);
 	}
+	addNode = (ListNode	*)calloc(1, sizeof(ListNode));
+	*addNode = element; 
 	curr = &pList->headerNode;
 	for (int i = 0; i < position; i++)
 		curr = curr->pLink;
-	element->pLink = curr->pLink;
-	curr->pLink = element;
+	addNode->pLink = curr->pLink;
+	curr->pLink = addNode;
 	pList->currentElementCount++;
 	return (TRUE);
 }
@@ -50,13 +54,13 @@ ListNode* getLLElement(LinkedList* pList, int position)
 {
 	ListNode	*curr;
 
-	if (position < 0 || pList->currentElementCount < position)
+	if (position < 0 || pList->currentElementCount <= position)
 	{
 		printf("Wrong Approach\n");
 		return (NULL);
 	}
-	curr = pList->headerNode.pLink;
-	for (int i = 0; i < position; i++)
+	curr = &pList->headerNode;
+	for (int i = 0; i <= position; i++)
 		curr = curr->pLink;
 	return (curr);
 }
@@ -77,4 +81,21 @@ void deleteLinkedList(LinkedList* pList)
 {
 	clearLinkedList(pList);
 	free(pList);
+}
+
+void displayLinkedList(LinkedList *pList)
+{
+	ListNode	*pNode;
+
+	pNode = (ListNode *)malloc(sizeof(ListNode));
+	pNode = pList->headerNode.pLink;
+	for (int i = 0; i < pList->currentElementCount; i++)
+	{
+		printf("%d",pNode->data);
+		pNode = pNode->pLink;
+		if (i < pList->currentElementCount - 1)
+			printf("->");
+	}
+	printf("\n");
+	return ;
 }
