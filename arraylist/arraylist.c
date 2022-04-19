@@ -5,14 +5,17 @@ ArrayList*	createArrayList(int maxElementCount)
 	ArrayList *newAL;
 	ArrayListNode *newALN;
 
+	if (maxElementCount < 0)
+		return (NULL);
 	newAL = (ArrayList *)calloc(1, sizeof(ArrayList));
 	if (!newAL)
 		return (NULL);
-
 	newALN = (ArrayListNode *)calloc(maxElementCount, sizeof(ArrayListNode));
 	if (!newALN)
+	{
+		free(newAL);
 		return (NULL);
-
+	}
 	newAL->pElement = newALN;
 	newAL->maxElementCount = maxElementCount;
 	return (newAL);
@@ -93,7 +96,7 @@ void displayArrayList(ArrayList* pList)
 	}
 }
 
-void clearArrayList(ArrayList* pList)
+void clearArrayList(ArrayList* pList) //초기 할당 상태로 되돌려준다고 생각
 {
 	for(int i = 0; i < pList->currentElementCount; i++)
 		pList->pElement[i].data = 0;

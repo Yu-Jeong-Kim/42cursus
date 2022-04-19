@@ -6,7 +6,7 @@ int main(void)
 	int			max;
 
 	pList = createLinkedList();
-	max = 3;
+	max = 5000;
 	for(int i = 0; i < max; i++)
 	{	
 		ListNode 	pNode;
@@ -14,18 +14,18 @@ int main(void)
 		pNode.pLink = NULL;
 		addLLElement(pList, i, pNode);
 	}
-	ListNode ptr;
-	ptr.data = 50000;
-	ptr.pLink = NULL;
-	addLLElement(pList, 1, ptr);
-	displayLinkedList(pList);
+	// ListNode ptr;
+	// ptr.data = 50000;
+	// ptr.pLink = NULL;
+	// addLLElement(pList, 1, ptr);
+	// displayLinkedList(pList);
 	// printf("%d\n", getLinkedListLength(pList));
 	// removeLLElement(pList, 0);
 	// printf("%d\n", pList->currentElementCount);
 	// printf("%d\n", getLinkedListLength(pList));
 	// getLLElement(pList, 4);
 	// deleteLinkedList(pList);
-	//timeCheck(pList, max);
+	timeCheck(pList, max);
 	return (0);
 }
 

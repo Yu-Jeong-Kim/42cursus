@@ -5,6 +5,8 @@ LinkedList* createLinkedList()
 	LinkedList	*pList;
 	
 	pList = (LinkedList *)calloc(1, sizeof(LinkedList));
+	if (!pList)
+		return (NULL);
 	return(pList);
 }
 
@@ -70,6 +72,7 @@ void clearLinkedList(LinkedList* pList)
 	int position = pList->currentElementCount - 1;
 	for (; 0 <= position; position--)
 		removeLLElement(pList, position);
+	pList->headerNode.pLink = NULL;
 }
 
 int getLinkedListLength(LinkedList* pList)
@@ -88,6 +91,7 @@ void displayLinkedList(LinkedList *pList)
 	ListNode	*pNode;
 
 	pNode = pList->headerNode.pLink;
+	printf("Current List Length : %d\n", pList->currentElementCount);
 	for (int i = 0; i < pList->currentElementCount; i++)
 	{
 		printf("%d",pNode->data);
