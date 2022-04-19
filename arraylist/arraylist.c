@@ -41,7 +41,7 @@ int isArrayListEmpty(ArrayList* pList)
 
 int addALElement(ArrayList* pList, int position, ArrayListNode element)
 {
-	if (isArrayListFull(pList) || position < 0 || pList->maxElementCount <= position)
+	if (isArrayListFull(pList) || position < 0 || pList->currentElementCount < position)
 	{
 		if (isArrayListFull(pList))
 			printf("Array is Full\n");
@@ -74,7 +74,7 @@ int removeALElement(ArrayList* pList, int position)
 
 ArrayListNode* getALElement(ArrayList* pList, int position)
 {
-	if (position < 0 || pList->maxElementCount < position)
+	if (position < 0 || pList->currentElementCount < position)
 	{
 		printf("Wrong Approach\n");
 		return (NULL);
