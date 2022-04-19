@@ -1,4 +1,4 @@
-#include "linkedlist.h"
+#include "polynomial.h"
 
 LinkedList* createLinkedList()
 {
@@ -10,31 +10,39 @@ LinkedList* createLinkedList()
 	return(pList);
 }
 
-int addLLElement(LinkedList* pList, int position, ListNode element)
+ListNode* createNode(int coef, int degree)
 {
-	ListNode	*curr;
-	ListNode	*addNode;
-	int			i;
+    ListNode    *newNode;
+
+    newNode = (ListNode *)calloc(1, sizeof(ListNode));
+    if (!newNode)
+        return (NULL);
+    newNode->coef = coef;
+    newNode->degree= degree;
+    return (newNode);
+}
+
+int addLLElement(LinkedList* pList, int position, ListNode *element)
+{
+	ListNode	*pNode;
 
 	if (position < 0 || pList->currentElementCount < position)
 	{
 		printf("Wrong Approach\n");
 		return (FALSE);
 	}
-	addNode = (ListNode	*)calloc(1, sizeof(ListNode));
-	*addNode = element; 
-	curr = &pList->headerNode;
+	pNode = &pList->headerNode;
 	for (int i = 0; i < position; i++)
-		curr = curr->pLink;
-	addNode->pLink = curr->pLink;
-	curr->pLink = addNode;
+		pNode = pNode->pLink;
+	element->pLink = pNode->pLink;
+	pNode->pLink = element;
 	pList->currentElementCount++;
 	return (TRUE);
 }
 
 int removeLLElement(LinkedList* pList, int position)
 {
-	ListNode	*curr;
+	ListNode	*pNode;
 	ListNode	*delNode;
 
 	if (position < 0 || pList->currentElementCount <= position)
@@ -42,11 +50,11 @@ int removeLLElement(LinkedList* pList, int position)
 		printf("Wrong Approach\n");
 		return (FALSE);
 	}
-	curr = &pList->headerNode;
+	pNode = &pList->headerNode;
 	for (int i = 0; i < position; i++)
-		curr = curr->pLink;
-	delNode = curr->pLink;
-	curr->pLink = delNode->pLink;
+		pNode = pNode->pLink;
+	delNode = pNode->pLink;
+	pNode->pLink = delNode->pLink;
 	free(delNode);
 	pList->currentElementCount--;
 	return (TRUE);
@@ -54,17 +62,17 @@ int removeLLElement(LinkedList* pList, int position)
 
 ListNode* getLLElement(LinkedList* pList, int position)
 {
-	ListNode	*curr;
+	ListNode	*pNode;
 
 	if (position < 0 || pList->currentElementCount <= position)
 	{
 		printf("Wrong Approach\n");
 		return (NULL);
 	}
-	curr = &pList->headerNode;
+	pNode = &pList->headerNode;
 	for (int i = 0; i <= position; i++)
-		curr = curr->pLink;
-	return (curr);
+		pNode = pNode->pLink;
+	return (pNode);
 }
 
 void clearLinkedList(LinkedList* pList)
@@ -88,17 +96,5 @@ void deleteLinkedList(LinkedList* pList)
 
 void displayLinkedList(LinkedList *pList)
 {
-	ListNode	*pNode;
-
-	pNode = pList->headerNode.pLink;
-	printf("Current List Length : %d\n", pList->currentElementCount);
-	for (int i = 0; i < pList->currentElementCount; i++)
-	{
-		printf("%d",pNode->data);
-		pNode = pNode->pLink;
-		if (i < pList->currentElementCount - 1)
-			printf("->");
-	}
-	printf("\n");
-	return ;
+	
 }
